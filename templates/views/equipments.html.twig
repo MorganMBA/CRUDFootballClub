@@ -1,0 +1,21 @@
+{{ include('header.html.twig') }}
+<center><button type="button" class="btn btn-secondary btn-lg">
+	<a href="{{ path('add_equipment') }}">
+	Add new equipment
+	</a></button>
+{% if message is defined %}
+	<h1> {{ message }}</h1><br></center>
+{% endif %}
+
+{% if equipements is defined  %}
+	{% for post in equipements %}
+		<h1>
+			<a href="{{ path('show_id', {id: post.id}) }}">{{ post.description }}</a>
+			<a href="{{ path('delete_id', {id: post.id}) }}"><img src="{{ asset('img/delete.svg') }}" alt="delete">
+			<a href="{{ path('equipment_edit', {id: post.id}) }}"><img src="{{ asset('img/edit.png') }}" width="30" height="30" alt="modify">
+		</h1>
+		{% else %}
+			<h1> Pas d'équipement</h1>
+	{% endfor %}
+{% endif %}
+
